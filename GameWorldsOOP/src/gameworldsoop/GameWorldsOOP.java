@@ -10,6 +10,8 @@ public class GameWorldsOOP {
         System.out.println("what up!");
         System.out.println("test");
         System.out.println("fedt fedt fedt det vriker sku");
+        
+        
     }
     
 }
