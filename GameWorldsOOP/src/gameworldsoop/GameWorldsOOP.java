@@ -8,6 +8,7 @@ public class GameWorldsOOP {
         System.out.println("Hello World");
         System.out.println("Hvad sker der?");
         System.out.println("what up!");
+        System.out.println("test");
     }
     
 }
