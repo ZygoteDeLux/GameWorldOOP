@@ -21,8 +21,8 @@ public class Room {
     public String getShortDescription(){
         return description;
     }
-    
-    
+
+   
     
     
 }

@@ -1,12 +1,11 @@
 package LemGame;
-
+import java.util.*;
 public class Game {
 
     private Room currentroom;
-            Command pickup = new Command();
-
 
     public static void main(String[] args) {
+        
     }
 
     public String getCurrentRoom() {
@@ -15,31 +14,31 @@ public class Game {
     }
 
     public void createRoom() {
-        Room Centrum, northLem, southLem, eastLem, westLem;
-        Centrum = new Room("You are in centrum now");
+        Room centrum, northLem, southLem, eastLem, westLem;
+        centrum = new Room("You are in downtown Lem now");
         northLem = new Room("You are in north Lem now");
         southLem = new Room("You are in south Lem now");
         eastLem = new Room("You are in east Lem now");
         westLem = new Room("You are in west Lem now");
-        Centrum.getShortDescription();
-        Centrum.setExit("North", northLem);
-        Centrum.setExit("South", southLem);
-        Centrum.setExit("East", eastLem);
-        Centrum.setExit("West", westLem);
-        currentroom = Centrum;
+        centrum.getShortDescription();
+        centrum.setExit("North", northLem);
+        centrum.setExit("South", southLem);
+        centrum.setExit("East", eastLem);
+        centrum.setExit("West", westLem);
+        currentroom = centrum;
     }
 
-    public void goRoom() {
-        String direction = commandX;
+    public void goRoom(Command command) {
+        String direction = command.getSecondWord();
         Room nextRoom;
         nextRoom = new Room(direction);
+        
 
         if (nextRoom == null) {
             System.out.println("You cant go there");
         } else {
             nextRoom = currentroom;
         }
-        //mangler command til "get descritopn of next room, and command to see if room is valid
     }
     
     
