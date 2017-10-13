@@ -46,6 +46,7 @@ public class Player {
     }
 
     public void showBag() {
+        
         if(bag.size() == 0){
             System.out.println("Your bag is empty! ");
         } else{
