@@ -6,7 +6,7 @@ package gameworldsoop;
  */
 public enum CommandWord
 {
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?");
+    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), PICKUP("You picked up ");
     
     private String commandString;
     
