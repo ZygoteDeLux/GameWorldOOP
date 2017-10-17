@@ -8,6 +8,7 @@ public class Room {
     int roomLocation;
     String roomBehaviour;
     ArrayList<Prop> roomItems = new ArrayList();
+    ArrayList<Room> roomExits = new ArrayList();
 
     Room(String roomName, int roomLocation) {
         this.roomName = roomName;
@@ -24,7 +25,10 @@ public class Room {
         return roomItems.toString();
     }
     public void setRoomExit(Room room){
-       
+        roomExits.add(room);
+    }
+    public String getRoomExit(){
+        return roomExits.toString();
     }
 
     @Override

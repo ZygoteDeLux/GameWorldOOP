@@ -4,29 +4,25 @@ import java.util.*;
 
 public class Player {
 
+    //player skal kende rum.
     private String playerName;
     private int playerCurrency;
     private Room currentPlayerRoom;
     private int playerDrunk;
     private ArrayList<Prop> bag = new ArrayList();
-    private boolean alreadyExecuted = true;
-    private boolean alreadyExecuted1 = true;
-    private boolean alreadyExecuted2 = true;
-    private boolean alreadyExecuted3 = true;
 
     Player(String playerName) {
         this.playerName = playerName;
         this.playerCurrency = 0;
         this.playerDrunk = 0;
-        //this.currentPlayerRoom = room;
     }
 
     public String getPlayerName() {
         return playerName;
     }
 
-    public int getPlayerCurrency() {
-        return playerCurrency;
+    public void getPlayerCurrency() {
+        System.out.println("You have " + playerCurrency + " monetos now");
     }
 
     public void addCurrency(int currency) {
@@ -41,8 +37,8 @@ public class Player {
         currentPlayerRoom = room;
     }
 
-    public void getCurrentPlayerRoom() {
-        System.out.println(currentPlayerRoom);
+    public Room getCurrentPlayerRoom() {
+        return currentPlayerRoom;
     }
 
     public void move(Room room) {
@@ -50,44 +46,17 @@ public class Player {
         currentPlayerRoom = room;
     }
 
-    public void PickUpItemsInCentrum(Room room, Prop prop) {
-        if (alreadyExecuted == true) {
-            System.out.println("There is no items in the room! ");
-            room.removeRoomItem(prop);
-            bag.add(prop);
+    public void PickUp() {
+        if (currentPlayerRoom.roomItems.isEmpty() == true) {
+            System.out.println("There is no items in the room ");
+        } else {
+            bag.addAll(currentPlayerRoom.roomItems);
         }
-        alreadyExecuted = false;
+        System.out.println("You added " + currentPlayerRoom.roomItems + " to your bag ");
+        for (int i = 0; i < currentPlayerRoom.roomItems.size(); i++) {
+            currentPlayerRoom.roomItems.remove(i);
 
-    }
-
-    public void PickUpItemsInNorth(Room room, Prop prop) {
-        if (alreadyExecuted1 == true) {
-            System.out.println("There is no items in the room! ");
-            room.removeRoomItem(prop);
-            bag.add(prop);
         }
-        alreadyExecuted1 = false;
-
-    }
-
-    public void PickUpItemsInSouth(Room room, Prop prop) {
-        if (alreadyExecuted2 == true) {
-            System.out.println("There is no items in the room! ");
-            room.removeRoomItem(prop);
-            bag.add(prop);
-        }
-        alreadyExecuted2 = false;
-
-    }
-
-    public void PickUpItemsInEast(Room room, Prop prop) {
-        if (alreadyExecuted3 == true) {
-            System.out.println("There is no items in the room! ");
-            room.removeRoomItem(prop);
-            bag.add(prop);
-        }
-        alreadyExecuted3 = false;
-
     }
 
     public void removeItem(Prop prop) {
@@ -111,11 +80,5 @@ public class Player {
         }
 
     }
-}
-/*
-    -til senere
-    public Boolean doAction() {
-        return true;
 
-    }
- */
+}
