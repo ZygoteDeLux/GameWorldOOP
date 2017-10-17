@@ -1,6 +1,5 @@
 package LemGame;
 
-<<<<<<< HEAD
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -10,9 +9,5 @@ import java.util.StringTokenizer;
  */
 public class Parser 
 {
-=======
-public class Parser {
-    
->>>>>>> 19b2eb2590f4a0a0731d82124ac3e06438100243
 }
 
