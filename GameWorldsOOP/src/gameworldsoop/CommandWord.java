@@ -6,7 +6,7 @@ package gameworldsoop;
  */
 public enum CommandWord
 {
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), PICKUP("You picked up ");
+    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), PICKUP("pickup");
     
     private String commandString;
     
@@ -14,7 +14,7 @@ public enum CommandWord
     {
         this.commandString = commandString;
     }
-    
+    @Override
     public String toString()
     {
         return commandString;

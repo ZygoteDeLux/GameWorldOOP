@@ -12,12 +12,8 @@ public class Room {
     Room(String roomName, int roomLocation) {
         this.roomName = roomName;
         this.roomLocation = roomLocation;
-        //commit
     }
 
-    public String getRoomName() {
-        return roomName;
-    }
     public void addRoomItem(Prop prop){
         roomItems.add(prop);
     }
@@ -27,5 +23,14 @@ public class Room {
     public String getRoomItems(){
         return roomItems.toString();
     }
+    public void setRoomExit(Room room){
+       
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" + "roomName=" + roomName + '}';
+    }
+    
     
 }

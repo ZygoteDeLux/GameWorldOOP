@@ -11,15 +11,14 @@ public class Prop {
         this.propName = propName;
         this.propValue = propValue;
     }
-    
+
     @Override
     public String toString() {
-      return "Prop{" + "propName=" + propName + ", propValue=" + propValue + '}';
+        return "Prop{" + "propName=" + propName + ", propValue=" + propValue + '}';
 
     }
 
     public int getValue() {
         return propValue;
     }
-
 }
