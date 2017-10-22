@@ -3,8 +3,6 @@ package LemGame;
 import java.util.*;
 
 public class Player {
-
-    //player skal kende rum.
     private String playerName;
     private int playerCurrency;
     private Room currentPlayerRoom;
@@ -21,8 +19,8 @@ public class Player {
         return playerName;
     }
 
-    public void getPlayerCurrency() {
-        System.out.println("You have " + playerCurrency + " monetos now");
+    public int getPlayerCurrency() {
+        return playerCurrency; 
     }
 
     public void addCurrency(int currency) {
@@ -42,11 +40,11 @@ public class Player {
     }
 
     public void move(Room room) {
-        System.out.println("You moved " + room);
         currentPlayerRoom = room;
     }
 
-    public void PickUp() {
+    public void pickUp() {
+//       if(bag.size() < 2){ BEMÆRK: HUSK GRINDEHVALSBØFFER OGSÅ FYLDER
         if (currentPlayerRoom.roomItems.isEmpty() == true) {
             System.out.println("There is no items in the room ");
         } else {
@@ -57,6 +55,8 @@ public class Player {
             currentPlayerRoom.roomItems.remove(i);
 
         }
+//       } else 
+//            System.out.println("Your bag is full ");
     }
 
     public void removeItem(Prop prop) {
@@ -80,5 +80,11 @@ public class Player {
         }
 
     }
+    
+//    public void cutHegde(){
+//        System.out.println("You cut Fru Madsens hegde. You earned 25 coints! ");
+//        playerCurrency += 25;
+//    }
+    
 
 }

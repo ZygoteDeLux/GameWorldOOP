@@ -4,11 +4,12 @@ import java.util.*;
 
 public class Room {
 
-    String roomName;
-    int roomLocation;
-    String roomBehaviour;
-    ArrayList<Prop> roomItems = new ArrayList();
-    ArrayList<Room> roomExits = new ArrayList();
+    private String roomName;
+    private int roomLocation;
+    private int roomBehavior;
+    // Room items is not private so that PICKUP methods works in player
+     ArrayList<Prop> roomItems = new ArrayList();
+    private ArrayList<Room> roomExits = new ArrayList();
 
     Room(String roomName, int roomLocation) {
         this.roomName = roomName;
@@ -30,10 +31,21 @@ public class Room {
     public String getRoomExit(){
         return roomExits.toString();
     }
+    public int getRoomLocation(){
+        return roomLocation;
+    }
 
     @Override
     public String toString() {
         return "Room{" + "roomName=" + roomName + '}';
+    }
+
+    public int getRoomBehavior() {
+        return roomBehavior;
+    }
+
+    public void setRoomBehavior(int roomBehavior) {
+        this.roomBehavior = roomBehavior;
     }
     
     

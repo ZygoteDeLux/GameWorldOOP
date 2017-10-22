@@ -17,8 +17,8 @@ public class Prop {
         return "Prop{" + "propName=" + propName + ", propValue=" + propValue + '}';
 
     }
-
-    public int getValue() {
-        return propValue;
-    }
+//    Hvad skal den her metode bruges til? TO DO
+//    public int getValue() {
+//        return propValue;
+//    }
 }
