@@ -3,11 +3,13 @@ package LemGame;
 import java.util.*;
 
 public class Player {
+
     private String playerName;
     private int playerCurrency;
     private Room currentPlayerRoom;
     private int playerDrunk;
-    private ArrayList<Prop> bag = new ArrayList();
+    //ÆNDRET
+    private HashMap<Prop, String> bag = new HashMap();
 
     Player(String playerName) {
         this.playerName = playerName;
@@ -19,16 +21,23 @@ public class Player {
         return playerName;
     }
 
+    public HashMap<Prop, String> getBag() {
+        return bag;
+    }
+
     public int getPlayerCurrency() {
-        return playerCurrency; 
+        return playerCurrency;
     }
 
     public void addCurrency(int currency) {
         playerCurrency += currency;
     }
+    public void addProp(Prop prop){
+        bag.put(prop, prop.getPropDescription());
+    }
 
-    public void removeCurrency(int currency) {
-        playerCurrency -= currency;
+    public int removeCurrency(int currency) {
+        return playerCurrency -= currency;
     }
 
     public void setCurrentRoom(Room room) {
@@ -44,19 +53,23 @@ public class Player {
     }
 
     public void pickUp() {
-//       if(bag.size() < 2){ BEMÆRK: HUSK GRINDEHVALSBØFFER OGSÅ FYLDER
-        if (currentPlayerRoom.roomItems.isEmpty() == true) {
-            System.out.println("There is no items in the room ");
-        } else {
-            bag.addAll(currentPlayerRoom.roomItems);
-        }
-        System.out.println("You added " + currentPlayerRoom.roomItems + " to your bag ");
-        for (int i = 0; i < currentPlayerRoom.roomItems.size(); i++) {
-            currentPlayerRoom.roomItems.remove(i);
+//        BEMÆRK: HUSK GRINDEHVALSBØFFER OGSÅ FYLDER
+// Ændret!
+        if (bag.size() < 2) {
+            if (currentPlayerRoom.roomItems.isEmpty() == true) {
+                System.out.println("There is no items in the room ");
+            } else {
+                bag.putAll(currentPlayerRoom.roomItems);
+            }
+            System.out.println(currentPlayerRoom.getRoomItems());
+            for (int i = 0; i < currentPlayerRoom.roomItems.size(); i++) {
+                currentPlayerRoom.roomItems.remove(i);
 
+            }
+        } else {
+            System.out.println("Your bag is full ");
         }
-//       } else 
-//            System.out.println("Your bag is full ");
+
     }
 
     public void removeItem(Prop prop) {
@@ -68,7 +81,11 @@ public class Player {
         if (bag.size() == 0) {
             System.out.println("Your bag is empty! ");
         } else {
-            System.out.println(bag.toString());
+            //fix så bag KUN printer value
+            for (Prop StuffToPrint : bag.keySet()) {
+                System.out.println(StuffToPrint.getPropName());
+            }
+
         }
     }
 
@@ -80,11 +97,10 @@ public class Player {
         }
 
     }
-    
-//    public void cutHegde(){
-//        System.out.println("You cut Fru Madsens hegde. You earned 25 coints! ");
-//        playerCurrency += 25;
-//    }
-    
+
+    public void cutHegde() {
+        System.out.println("You cut Fru Madsens hegde. You earned 25 coints! ");
+        playerCurrency += 25;
+    }
 
 }

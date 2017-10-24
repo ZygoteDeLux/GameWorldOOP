@@ -8,16 +8,18 @@ public class Room {
     private int roomLocation;
     private int roomBehavior;
     // Room items is not private so that PICKUP methods works in player
-     ArrayList<Prop> roomItems = new ArrayList();
+    //ÆNDRET
+     HashMap<Prop, String> roomItems = new HashMap();
     private ArrayList<Room> roomExits = new ArrayList();
 
     Room(String roomName, int roomLocation) {
         this.roomName = roomName;
         this.roomLocation = roomLocation;
+        this.roomBehavior = 1;
     }
-
+//ÆNDRET
     public void addRoomItem(Prop prop){
-        roomItems.add(prop);
+        roomItems.put(prop, prop.getPropDescription());
     }
     public void removeRoomItem(Prop prop){
         roomItems.remove(prop);
