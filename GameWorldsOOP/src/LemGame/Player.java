@@ -55,7 +55,7 @@ public class Player {
     public void pickUp() {
 //        BEMÆRK: HUSK GRINDEHVALSBØFFER OGSÅ FYLDER
 // Ændret!
-        if (bag.size() < 2) {
+        if (bag.size() > 2) {
             if (currentPlayerRoom.roomItems.isEmpty() == true) {
                 System.out.println("There is no items in the room ");
             } else {
@@ -98,9 +98,5 @@ public class Player {
 
     }
 
-    public void cutHegde() {
-        System.out.println("You cut Fru Madsens hegde. You earned 25 coints! ");
-        playerCurrency += 25;
-    }
 
 }
