@@ -26,12 +26,8 @@ public class Prop {
         this.propDescription = popDesripction;
     }
 
-   
-//    Hvad skal den her metode bruges til? TO DO
-//    public int getValue() {
-//        return propValue;
-//    }
-
+    
+    // 
     @Override
     public String toString() {
         return "Prop{" + "propName=" + propName + ", propValue=" + propValue + '}';

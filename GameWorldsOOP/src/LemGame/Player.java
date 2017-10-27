@@ -10,7 +10,7 @@ public class Player {
     private int playerDrunk;
     //ÆNDRET
     private HashMap<Prop, String> bag = new HashMap();
-
+    private ArrayList<Prop> beefBag = new ArrayList();
     Player(String playerName) {
         this.playerName = playerName;
         this.playerCurrency = 0;
@@ -20,13 +20,19 @@ public class Player {
     public String getPlayerName() {
         return playerName;
     }
-
+    public void addBeef(Prop prop){
+        beefBag.add(prop);
+    }
     public HashMap<Prop, String> getBag() {
         return bag;
     }
 
     public int getPlayerCurrency() {
         return playerCurrency;
+    }
+
+    public ArrayList<Prop> getBeefBag() {
+        return beefBag;
     }
 
     public void addCurrency(int currency) {
@@ -55,8 +61,8 @@ public class Player {
     public void pickUp() {
 //        BEMÆRK: HUSK GRINDEHVALSBØFFER OGSÅ FYLDER
 // Ændret!
-        if (bag.size() > 2) {
-            if (currentPlayerRoom.roomItems.isEmpty() == true) {
+        if (bag.size() <= 2) {
+            if (currentPlayerRoom.getRoomItems().isEmpty() == true) {
                 System.out.println("There is no items in the room ");
             } else {
                 bag.putAll(currentPlayerRoom.roomItems);
@@ -78,13 +84,15 @@ public class Player {
 
     public void showBag() {
 
-        if (bag.size() == 0) {
+        if (bag.size() == 0 && beefBag.size() == 0) {
             System.out.println("Your bag is empty! ");
         } else {
             //fix så bag KUN printer value
+            System.out.println(beefBag);
             for (Prop StuffToPrint : bag.keySet()) {
                 System.out.println(StuffToPrint.getPropName());
             }
+                    
 
         }
     }

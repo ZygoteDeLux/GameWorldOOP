@@ -26,11 +26,10 @@ public class NPC {
     public String getNpcRoom() {
         return npcRoom.toString();
     }
-
-    //TO DO MOVE NPC TO RANDOM ROOM
-//    public void randomRoom() {
-//        this.npcRoom.getRoomLocation();
+    // fix
+//    public void npcMove(Room room){
+//        this.npcRoom = room;
 //    }
-//    
+
 
 }
