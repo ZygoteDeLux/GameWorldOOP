@@ -91,14 +91,14 @@ public class Game {
 
     private void printHelp() {
         // LAV PRINT HELP FÆRDIGT
-        System.out.println("Your command words are:");
-        System.out.println("- help");
-        System.out.println("- pickup");
-        System.out.println("- show currency");
-        System.out.println("- quit (quits the game)");
-        System.out.println("- map");
-        System.out.println("- bag");
-        System.out.println("- hand in");
+        System.out.println("Your command words are:" +
+                "\n- help" +
+                "\n- pickup" +
+                "\n- show currency" +
+                "\n- quit (quits the game)" +
+                "\n- map" +
+                "\n- bag" +
+                "\n- han in");
     }
 
     public void commands() {
