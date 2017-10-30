@@ -2,7 +2,7 @@ package LemGame;
 
 import java.util.*;
 
-public class NPC {
+public class NPC{
 
     private String npcName;
     private String npcDiscription;
@@ -30,6 +30,10 @@ public class NPC {
     public void npcMove(){
         Random random = new Random();
         npcRoom = npcRoom.roomExits.get(random.nextInt(npcRoom.roomExits.size()));
+    }
+
+    public void setNpcRoom(Room npcRoom) {
+        this.npcRoom = npcRoom;
     }
 
 

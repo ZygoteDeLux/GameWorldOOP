@@ -4,73 +4,52 @@ import java.util.*;
 
 public class Room {
 
+    //instance variables that defines a Room
     private String roomName;
     private int roomLocation;
     private int roomBehavior;
     private String roomDescription;
+    ArrayList<Prop> roomItems = new ArrayList(); // ArrayList that holds props in the room.
+    ArrayList<Room> roomExits = new ArrayList(); // ArrayList that holds room exits.
 
-    // Room items is not private so that PICKUP methods works in player
-    //ÆNDRET
-    ArrayList<Prop> roomItems = new ArrayList();
-    ArrayList<Room> roomExits = new ArrayList();
-
-    Room(String roomName, int roomLocation) {
-        this.roomName = roomName;
-        this.roomLocation = roomLocation;
-        this.roomBehavior = 1;
+    Room(String roomName, int roomLocation) { //Constructor that sets a start value for roomName and roomLocation.
+        this.roomName = roomName; // give roomName a start value
+        this.roomLocation = roomLocation; // give roomLocation a start value
+        this.roomBehavior = 1; //set roomBehavior to 1.
     }
-//ÆNDRET
 
-    public void addRoomItem(Prop prop) {
+    public void addRoomItem(Prop prop) { //add item to room
         roomItems.add(prop);
     }
 
-    public void removeRoomItem(Prop prop) {
+    public void removeRoomItem(Prop prop) { // remove item from room
         roomItems.remove(prop);
     }
 
-    public String getRoomName() {
+    public String getRoomName() { //return roomName
         return roomName;
     }
-      public void removeAllRoomItems() {
-        roomItems.clear();
-    }
-
-    public String getRoomItems() {
-        return roomItems.toString();
-    }
-
-    public void setRoomExit(Room room) {
+    public void setRoomExit(Room room) { //set a new roomExit
         roomExits.add(room);
     }
 
-    public String getRoomExit() {
-        return roomExits.toString();
-    }
-
-    public int getRoomLocation() {
+    public int getRoomLocation() { //r return room Location
         return roomLocation;
     }
 
-    //pænere
-    @Override
-    public String toString() {
-        return roomName;
-    }
-
-    public int getRoomBehavior() {
+    public int getRoomBehavior() { //return roomBehavior
         return roomBehavior;
     }
 
-    public void setRoomBehavior(int roomBehavior) {
+    public void setRoomBehavior(int roomBehavior) { //set a new value for roomBehavior
         this.roomBehavior = roomBehavior;
     }
 
-    public String getRoomDescription() {
+    public String getRoomDescription() { //return roomDescription
         return roomDescription;
     }
 
-    public void setRoomDescription(String roomDescription) {
+    public void setRoomDescription(String roomDescription) { //set a new roomDescription
         this.roomDescription = roomDescription;
     }
    

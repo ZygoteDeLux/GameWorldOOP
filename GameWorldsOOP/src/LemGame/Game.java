@@ -5,12 +5,15 @@ fix hand in beefs så den ikke dispalyer 2, 1, 1
 gør spillet pænere
 Lav et GUI
 Fix play agian
-*/
+kommentarer
+fix play agian
+rapport
+ */
 
 import java.util.*;
 
 public class Game {
-    
+
     int drunkPenalty;
     long startTime;
     int beefcount = 0;
@@ -21,15 +24,14 @@ public class Game {
     Room south = new Room("south", 2);
     Room east = new Room("east", 3);
     Room west = new Room("west", 4);
-    Room fruMadsensHouse = new Room("frumadsens house", 5);
-    Room bar = new Room("the bar", 6);
+    Room fruMadsensHouse = new Room("fru madsens house", 5);
+    Room bar = new Room("bar", 6);
     Room taxi = new Room("taxi ", 7);
     Room fishMarket = new Room("the fish market", 8);
     Prop wallet = new Prop("Wallet", 25);
     Prop beef = new Prop("beef", 25);
     Prop ciggarets = new Prop("ciggarets", 25);
     Player player1 = new Player("Kristian");
-//    String quit = input.nextLine();
     NPC tuborgMan = new NPC("Tuborg Manden", "ham her kan godt lide bajer", bar);
 
     public static void main(String[] args) {
@@ -75,9 +77,9 @@ public class Game {
         east.setRoomExit(bar);
         east.setRoomExit(centrum);
         east.addRoomItem(ciggarets);
-        east.setRoomDescription("You arrived in the Eastern part of Lem city. You see - ");
+        east.setRoomDescription("East");
         south.setRoomExit(centrum);
-        south.setRoomDescription("You arrived in the Soutern part of Lem city. You see -  ");
+        south.setRoomDescription("South ");
         fruMadsensHouse.setRoomExit(west);
         fruMadsensHouse.setRoomDescription("You walked over to fru madsens house. A beautiful women named Fru Madsen appears in the door asks you to cut her hegde and in return give you 25 coins, type 'cut hegde' to help her.");
         fishMarket.setRoomExit(north);
@@ -132,7 +134,7 @@ public class Game {
             case "map":
                 caseMap();
                 break;
-            case "The bar":
+            case "bar":
                 caseBar();
                 break;
             case "do dishes":
@@ -141,7 +143,7 @@ public class Game {
             case "bag":
                 player1.showBag();
                 break;
-            case "frumadsens house":
+            case "fru madsens house":
                 caseFruMadsensHouse();
                 break;
             case "taxi":
@@ -150,7 +152,7 @@ public class Game {
             case "the fish market":
                 caseFishMarket();
                 break;
-            case "cut hegde":
+            case "cut hedge":
                 cutHegde();
                 break;
             case "buy beef":
@@ -161,9 +163,6 @@ public class Game {
                 System.exit(1);
             case "hand in":
                 handIn();
-                break;
-            case "Do Dishes":
-                doDishes();
                 break;
             case "keep":
                 keep();
@@ -230,7 +229,6 @@ public class Game {
 
     private void caseWest() {
         if (player1.getCurrentPlayerRoom() == centrum || player1.getCurrentPlayerRoom() == fruMadsensHouse) {
-
             if (player1.getCurrentPlayerRoom() == west) {
                 System.out.println("You are already in west");
             } else {
@@ -245,31 +243,27 @@ public class Game {
 
     private void caseFruMadsensHouse() {
         if (player1.getCurrentPlayerRoom() == west) {
-                if (fruMadsensHouse.getRoomBehavior() == 1) {
-                    move(fruMadsensHouse);
-                    System.out.println(fruMadsensHouse.getRoomDescription()); 
-               } else {
-                    move(fruMadsensHouse);
-                    System.out.println("You walked over to frumadsens house");
-                }
+            move(fruMadsensHouse);
+            if (fruMadsensHouse.getRoomBehavior() == 1) {
+                System.out.println(fruMadsensHouse.getRoomDescription());
+            } else {
+                System.out.println("You walked over to frumadsens house");
             }
-         else {
+        } else {
             System.out.println("You cant go there right now");
         }
 
     }
 
     private void caseBar() {
-          if (player1.getCurrentPlayerRoom() == east) {
-                if (bar.getRoomBehavior() == 1) {
-                    move(bar);
-                    System.out.println(bar.getRoomDescription()); 
-               } else {
-                    move(bar);
-                    System.out.println("You walked in the the bar");
-                }
+        if (player1.getCurrentPlayerRoom() == east) {
+            move(bar);
+            if (bar.getRoomBehavior() == 1) {
+                System.out.println(bar.getRoomDescription());
+            } else {
+                System.out.println("You walked in the the bar");
             }
-         else {
+        } else {
             System.out.println("You cant go there right now");
         }
     }
@@ -364,6 +358,7 @@ public class Game {
                         player1.getCurrentPlayerRoom().setRoomBehavior(0);
                     } else if (randoms == 50) {
                         System.out.println("The man jumps of joy and as a reward for finding his wallet he gives you 50 coins.");
+                        player1.addCurrency(50);
                         player1.getCurrentPlayerRoom().setRoomBehavior(0);
                     }
 
@@ -377,19 +372,20 @@ public class Game {
 
         if (player1.getCurrentPlayerRoom() == taxi) {
             if (player1.getBag().contains(beef)) {
+                count = 0;
                 for (int i = 0; i < player1.getBag().size(); i++) {
-                    if(player1.getBag().contains(beef)){
-                    player1.getBag().remove(beef);
-                    count++;
-                    beefcount++;
+                    if (player1.getBag().contains(beef)) {
+                        player1.getBag().remove(beef);
+                        count++;
+                        beefcount++;
                     }
                 }
 
                 System.out.println("You handed in  " + count + " beefs to the taxi driver");
 
-            }
-            else
+            } else {
                 System.out.println("You have no beefs to hand in");
+            }
         }
     }
 
@@ -421,61 +417,60 @@ public class Game {
 
     private void caseMap() {
         System.out.println("You are in " + player1.getCurrentPlayerRoom());
-
         System.out.println("You can go: ");
         for (Room StuffToPrint : player1.getCurrentPlayerRoom().roomExits) {
             System.out.println(" " + StuffToPrint.getRoomName());
         }
-        
+
         System.out.println("Tuborg dude is in " + tuborgMan.getNpcRoom());
     }
-    private void move(Room room){
-        // 1000 kan laves til variable hvis nødvendigt
+
+    private void move(Room room) {
         checkTime();
         player1.move(room);
         tuborgMan.npcMove();
-        if(player1.getCurrentPlayerRoom() == tuborgMan.getNpcRoom()){
+        if (tuborgMan.getNpcRoom() == taxi) {
+            tuborgMan.setNpcRoom(centrum);
+        }
+        if (tuborgMan.getNpcRoom() == fruMadsensHouse) {
+            tuborgMan.setNpcRoom(east);
+        }
+        if (player1.getCurrentPlayerRoom() == tuborgMan.getNpcRoom()) {
             player1.drink();
-            System.out.println("You met the turborg dude!");
+            System.out.println("You met the turborg guy!");
         }
     }
-    
-    private void checkTime(){
+
+    private void checkTime() {
         drunkPenalty += player1.getPlayerDrunk();
-        if(startTime + 5*60*1000 < System.currentTimeMillis()+drunkPenalty*1000){
+        if (startTime + 5 * 60 * 1000 < System.currentTimeMillis() + drunkPenalty * 1000) {
             lose();
         }
     }
-    
-    private void lose(){
+
+    private void lose() {
         System.out.println("You lost the game");
         scoreBoard();
         System.exit(1);
 
     }
-    private void scoreBoard(){
-         if(beefcount == 4){
-        if(startTime + 1*60*1000 > System.currentTimeMillis()){
-            System.out.println("You got 10 points! ");
-        }
-        else if(startTime + 2*60*1000 > System.currentTimeMillis()){
-            System.out.println("You got 8 points! ");
-        }
 
-        else if(startTime + 3*60*1000 > System.currentTimeMillis()){
-            System.out.println("You got 6 points! ");
-        }
-
-        else if(startTime + 4*60*1000 > System.currentTimeMillis()){
-            System.out.println("You got 4 points! ");
-        }
-
-        else {
-            System.out.println("You got 2 points! ");
-        }
-    }
-        else
+    private void scoreBoard() {
+        if (beefcount == 4) {
+            if (startTime + 1 * 60 * 1000 > System.currentTimeMillis()) {
+                System.out.println("You got 10 points! ");
+            } else if (startTime + 2 * 60 * 1000 > System.currentTimeMillis()) {
+                System.out.println("You got 8 points! ");
+            } else if (startTime + 3 * 60 * 1000 > System.currentTimeMillis()) {
+                System.out.println("You got 6 points! ");
+            } else if (startTime + 4 * 60 * 1000 > System.currentTimeMillis()) {
+                System.out.println("You got 4 points! ");
+            } else {
+                System.out.println("You got 2 points! ");
+            }
+        } else {
             System.out.println("You got 0 points");
+        }
 
     }
 }
