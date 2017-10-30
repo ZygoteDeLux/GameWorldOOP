@@ -13,26 +13,25 @@ rapport
 import java.util.*;
 
 public class Game {
-
     int drunkPenalty;
     long startTime;
     int beefcount = 0;
     Random random = new Random();
     Scanner input = new Scanner(System.in);
-    Room centrum = new Room("centrum", 0);
-    Room north = new Room("north", 1);
-    Room south = new Room("south", 2);
-    Room east = new Room("east", 3);
-    Room west = new Room("west", 4);
-    Room fruMadsensHouse = new Room("fru madsens house", 5);
-    Room bar = new Room("bar", 6);
-    Room taxi = new Room("taxi ", 7);
-    Room fishMarket = new Room("the fish market", 8);
+    Room centrum = new Room("centrum");
+    Room north = new Room("north");
+    Room south = new Room("south");
+    Room east = new Room("east");
+    Room west = new Room("west");
+    Room fruMadsensHouse = new Room("fru madsens house");
+    Room bar = new Room("bar");
+    Room taxi = new Room("taxi ");
+    Room fishMarket = new Room("the fish market");
     Prop wallet = new Prop("Wallet", 25);
     Prop beef = new Prop("beef", 25);
     Prop ciggarets = new Prop("ciggarets", 25);
     Player player1 = new Player("Kristian");
-    NPC tuborgMan = new NPC("Tuborg Manden", "ham her kan godt lide bajer", bar);
+    NPC tuborgMan = new NPC("Tuborg Manden", bar);
 
     public static void main(String[] args) {
 
@@ -88,6 +87,11 @@ public class Game {
         bar.setRoomDescription("You walked into a bar. The bartender asks you to do the dishes and as a reward he will give 25 coins.");
         taxi.setRoomExit(centrum);
         taxi.setRoomDescription("You walked over to the taxi. Here you can hand in your beefs");
+        player1.addProp(beef);
+        player1.addProp(beef);
+        player1.addProp(beef);
+        player1.addCurrency(25);
+        
 //         TO DO INTIZIALIZE GAME FÆRDIGT
     }
 
@@ -179,7 +183,7 @@ public class Game {
                 System.out.println("You are already in north");
             } else {
                 move(north);
-                System.out.println("You moved to north");
+                System.out.println("You moved to the Northern part of Lem.");
             }
         } else {
             System.out.println("You cant go there");
@@ -193,7 +197,7 @@ public class Game {
                 System.out.println("You are already in centrum");
             } else {
                 move(centrum);
-                System.out.println("You moved to centrum.");
+                System.out.println("You moved to centrum of Lem.");
             }
         } else {
             System.out.println("You cant go there");
@@ -203,9 +207,12 @@ public class Game {
     private void caseSouth() {
         if (player1.getCurrentPlayerRoom() == centrum) {
             if (player1.getCurrentPlayerRoom() == south) {
-                System.out.println("You are already in south");
+                System.out.println("You are already in the southern part of Lem");
             } else {
                 move(south);
+                if(south.getRoomBehavior() == 1)
+                    System.out.println("You entered the western part of Lem! There is a guy on the bench looking like he could a smoke.");
+                else
                 System.out.println("You moved to south");
             }
         } else {
@@ -230,10 +237,13 @@ public class Game {
     private void caseWest() {
         if (player1.getCurrentPlayerRoom() == centrum || player1.getCurrentPlayerRoom() == fruMadsensHouse) {
             if (player1.getCurrentPlayerRoom() == west) {
-                System.out.println("You are already in west");
+                System.out.println("You are already in the western part of Lem");
             } else {
                 move(west);
-                System.out.println("You moved to west");
+                if(west.getRoomBehavior() == 1)
+                System.out.println("You entered the western part of Lem! You see a man that might be looking for something.");
+                else
+                    System.out.println("You entered the western part of Lem!");
             }
         } else {
             System.out.println("You cant go there");
@@ -289,7 +299,7 @@ public class Game {
     private void buyBeef() {
         while (true) {
             if (player1.getCurrentPlayerRoom() == fishMarket) {
-                if ((player1.getBag().size() > 10)) {
+                if ((player1.getBag().size() > 5)) {
                     System.out.println("Your dont have space");
                     break;
                 } else if (player1.getPlayerCurrency() < 25) {
@@ -298,7 +308,7 @@ public class Game {
                 } else {
                     player1.addProp(beef);
                 }
-                System.out.println("You brought a beef for 25 coins");
+                System.out.println("You brought a beef for 25 coins" + beef.getPropDescription());
                 player1.removeCurrency(25);
                 break;
 
@@ -373,7 +383,7 @@ public class Game {
         if (player1.getCurrentPlayerRoom() == taxi) {
             if (player1.getBag().contains(beef)) {
                 count = 0;
-                for (int i = 0; i < player1.getBag().size(); i++) {
+                for (int i = player1.getBag().size(); i > 0; i--) {
                     if (player1.getBag().contains(beef)) {
                         player1.getBag().remove(beef);
                         count++;
@@ -416,7 +426,7 @@ public class Game {
     }
 
     private void caseMap() {
-        System.out.println("You are in " + player1.getCurrentPlayerRoom());
+        System.out.println("You are in " + player1.getCurrentPlayerRoom().toString());
         System.out.println("You can go: ");
         for (Room StuffToPrint : player1.getCurrentPlayerRoom().roomExits) {
             System.out.println(" " + StuffToPrint.getRoomName());

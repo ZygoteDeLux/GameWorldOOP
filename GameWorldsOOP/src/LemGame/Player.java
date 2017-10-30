@@ -100,14 +100,21 @@ public class Player  {
     }
 
     public void showBag() {
-
         if (bag.size() == 0) { 
             System.out.println("Your bag is empty! "); //prints if there is nothing in your bag
         } else {
+            Map<String, Integer>  print = new HashMap<>();
             for (Prop StuffToPrint : bag) { // iterate through bag
-                System.out.println(StuffToPrint.getPropName()); //print items.
+                if(print.containsKey(StuffToPrint.getPropName())){
+                    print.put(StuffToPrint.getPropName(), print.get(StuffToPrint.getPropName()) + 1);
+                    
+                }
+                else 
+                    print.put(StuffToPrint.getPropName(), 1);
             }
-
+            for(String propName : print.keySet()){
+                System.out.println(print.get(propName)+ " " + propName+"(s)");
+            }
         }
     }
 
@@ -121,6 +128,7 @@ public class Player  {
         }
 
     }
+
 
     public int getPlayerDrunk() { //returns integer on how drunk you are.
         return playerDrunk;

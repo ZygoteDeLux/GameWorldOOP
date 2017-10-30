@@ -8,9 +8,8 @@ public class NPC{
     private String npcDiscription;
     private Room npcRoom;
 
-    NPC(String npcName, String npcDiscription, Room npcRoom) {
+    NPC(String npcName, Room npcRoom) {
         this.npcName = npcName;
-        this.npcDiscription = npcDiscription;
         this.npcRoom = npcRoom;
 
     }
