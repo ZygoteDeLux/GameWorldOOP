@@ -23,13 +23,14 @@ public class NPC {
         return npcName;
     }
 
-    public String getNpcRoom() {
-        return npcRoom.toString();
+    public Room getNpcRoom() {
+        return npcRoom;
     }
-    // fix
-//    public void npcMove(Room room){
-//        this.npcRoom = room;
-//    }
+
+    public void npcMove(){
+        Random random = new Random();
+        npcRoom = npcRoom.roomExits.get(random.nextInt(npcRoom.roomExits.size()));
+    }
 
 
 }

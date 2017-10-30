@@ -7,10 +7,12 @@ public class Room {
     private String roomName;
     private int roomLocation;
     private int roomBehavior;
+    private String roomDescription;
+
     // Room items is not private so that PICKUP methods works in player
     //ÆNDRET
-     HashMap<Prop, String> roomItems = new HashMap();
-    private ArrayList<Room> roomExits = new ArrayList();
+    ArrayList<Prop> roomItems = new ArrayList();
+    ArrayList<Room> roomExits = new ArrayList();
 
     Room(String roomName, int roomLocation) {
         this.roomName = roomName;
@@ -18,29 +20,42 @@ public class Room {
         this.roomBehavior = 1;
     }
 //ÆNDRET
-    public void addRoomItem(Prop prop){
-        roomItems.put(prop, prop.getPropDescription());
+
+    public void addRoomItem(Prop prop) {
+        roomItems.add(prop);
     }
-    public void removeRoomItem(Prop prop){
+
+    public void removeRoomItem(Prop prop) {
         roomItems.remove(prop);
     }
-    public String getRoomItems(){
+
+    public String getRoomName() {
+        return roomName;
+    }
+      public void removeAllRoomItems() {
+        roomItems.clear();
+    }
+
+    public String getRoomItems() {
         return roomItems.toString();
     }
-    public void setRoomExit(Room room){
+
+    public void setRoomExit(Room room) {
         roomExits.add(room);
     }
-    public String getRoomExit(){
+
+    public String getRoomExit() {
         return roomExits.toString();
     }
-    public int getRoomLocation(){
+
+    public int getRoomLocation() {
         return roomLocation;
     }
 
     //pænere
     @Override
     public String toString() {
-        return "Room{" + "roomName=" + roomName + '}';
+        return roomName;
     }
 
     public int getRoomBehavior() {
@@ -50,6 +65,13 @@ public class Room {
     public void setRoomBehavior(int roomBehavior) {
         this.roomBehavior = roomBehavior;
     }
-    
-    
+
+    public String getRoomDescription() {
+        return roomDescription;
+    }
+
+    public void setRoomDescription(String roomDescription) {
+        this.roomDescription = roomDescription;
+    }
+   
 }

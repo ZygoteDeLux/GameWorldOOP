@@ -8,9 +8,10 @@ public class Player {
     private int playerCurrency;
     private Room currentPlayerRoom;
     private int playerDrunk;
+    
     //ÆNDRET
-    private HashMap<Prop, String> bag = new HashMap();
-    private ArrayList<Prop> beefBag = new ArrayList();
+    private ArrayList<Prop> bag = new ArrayList();
+
     Player(String playerName) {
         this.playerName = playerName;
         this.playerCurrency = 0;
@@ -20,10 +21,8 @@ public class Player {
     public String getPlayerName() {
         return playerName;
     }
-    public void addBeef(Prop prop){
-        beefBag.add(prop);
-    }
-    public HashMap<Prop, String> getBag() {
+
+    public ArrayList<Prop> getBag() {
         return bag;
     }
 
@@ -31,15 +30,12 @@ public class Player {
         return playerCurrency;
     }
 
-    public ArrayList<Prop> getBeefBag() {
-        return beefBag;
-    }
-
     public void addCurrency(int currency) {
         playerCurrency += currency;
     }
-    public void addProp(Prop prop){
-        bag.put(prop, prop.getPropDescription());
+
+    public void addProp(Prop prop) {
+        bag.add(prop);
     }
 
     public int removeCurrency(int currency) {
@@ -59,21 +55,41 @@ public class Player {
     }
 
     public void pickUp() {
+        int count = 0;
 //        BEMÆRK: HUSK GRINDEHVALSBØFFER OGSÅ FYLDER
-// Ændret!
-        if (bag.size() <= 2) {
-            if (currentPlayerRoom.getRoomItems().isEmpty() == true) {
-                System.out.println("There is no items in the room ");
-            } else {
-                bag.putAll(currentPlayerRoom.roomItems);
-            }
-            System.out.println(currentPlayerRoom.getRoomItems());
-            for (int i = 0; i < currentPlayerRoom.roomItems.size(); i++) {
-                currentPlayerRoom.roomItems.remove(i);
+// Ændret! Forsøg på et lave pickup metode så den printer en liste ud af items der er på jorden og man selv vælger hvad man kan samle op
+        Scanner input = new Scanner(System.in);
+        if (!currentPlayerRoom.roomItems.isEmpty()) {
+            System.out.println("What do you want to pickup? Type 'done' to move on.");
 
+            for (Prop StuffToPrint : currentPlayerRoom.roomItems) {
+                System.out.println(count + " " + StuffToPrint.getPropName());
+                count++;
             }
+            String inputString;
+            while (true) {
+                if (!(inputString = input.nextLine()).equalsIgnoreCase("done")) {
+                    try {
+                        int next = Integer.parseInt(inputString);
+                        bag.add(currentPlayerRoom.roomItems.get(next));
+                        System.out.println("You added a " + currentPlayerRoom.roomItems.get(next).getPropName() + " to your bag" + currentPlayerRoom.roomItems.get(next).getPropDescription());
+                        currentPlayerRoom.roomItems.remove(next);
+                        count = 0;
+                        for (Prop StuffToPrint : currentPlayerRoom.roomItems) {
+                            System.out.println(count + " " + StuffToPrint.getPropName());
+                            count++;
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Enter a number to pickup item");
+                    }
+                } else {
+                    System.out.println("You no longer pick up items");
+                    break;
+                }
+            }
+
         } else {
-            System.out.println("Your bag is full ");
+            System.out.println("There is no items in the room");
         }
 
     }
@@ -84,27 +100,32 @@ public class Player {
 
     public void showBag() {
 
-        if (bag.size() == 0 && beefBag.size() == 0) {
+        if (bag.size() == 0) {
             System.out.println("Your bag is empty! ");
         } else {
             //fix så bag KUN printer value
-            System.out.println(beefBag);
-            for (Prop StuffToPrint : bag.keySet()) {
+            for (Prop StuffToPrint : bag) {
                 System.out.println(StuffToPrint.getPropName());
             }
-                    
 
         }
     }
 
     public void drink() {
-        if (this.playerDrunk >= 4) {
+        if (this.playerDrunk < 4) {
             playerDrunk++;
+            System.out.println("You drunkometer is now at " + this.playerDrunk);
         } else {
+            System.out.println("Your drunkometer is at " + this.playerDrunk + "you are too drunk");
             System.out.println("You are too drunk");
         }
 
     }
 
+    public int getPlayerDrunk() {
+        return playerDrunk;
+    }
+
+   
 
 }

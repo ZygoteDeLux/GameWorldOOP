@@ -28,8 +28,5 @@ public class Prop {
 
     
     // 
-    @Override
-    public String toString() {
-        return "Prop{" + "propName=" + propName + ", propValue=" + propValue + '}';
-    }
+  
 }
