@@ -159,6 +159,9 @@ public class Game {
             case "cut hedge":
                 cutHegde();
                 break;
+            case "talk to driver":
+                talkToDriver();
+                break;
             case "buy beef":
                 buyBeef();
                 break;
@@ -289,8 +292,8 @@ public class Game {
 
     private void caseTaxi() {
         if (player1.getCurrentPlayerRoom() != centrum) {
-            System.out.println("There is no taxi");
-        } else {
+                System.out.println("There is no taxi");
+        }  else {
             move(taxi);
             System.out.println(taxi.getRoomDescription());
         }
@@ -317,6 +320,14 @@ public class Game {
                 break;
             }
         }
+    }
+    private void talkToDriver(){
+        if (taxi.getRoomBehavior() == 1) {
+                System.out.println("The cab driver tells you smth and u have to collect 4 grind-beefs before he will take you home");
+                taxi.setRoomBehavior(0);
+        } else {
+                System.out.println("You still missing some grind-beefs before i can take you home");
+            }
     }
 
     private void cutHegde() {
