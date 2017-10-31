@@ -323,10 +323,10 @@ public class Game {
     }
     private void talkToDriver(){
         if (taxi.getRoomBehavior() == 1) {
-                System.out.println("The cab driver tells you smth and u have to collect 4 grind-beefs before he will take you home");
+                System.out.println("The cab driver tells you that he will take you home if you give him 4 grind-beefs");
                 taxi.setRoomBehavior(0);
         } else {
-                System.out.println("You still missing some grind-beefs before i can take you home");
+                System.out.println("I have not gotten 4 grind-beefs from you yet, so i cant take you home untill i do");
             }
     }
 
