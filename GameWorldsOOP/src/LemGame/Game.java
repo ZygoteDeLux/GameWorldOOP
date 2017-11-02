@@ -252,7 +252,10 @@ public class Game {
                 move(west);
                 if (walletTracker == 0 && !player1.getBag().contains(wallet)) {
                     System.out.println("You entered the western part of Lem! You see a man looking for his wallet, maybe i can find it for him?");
-                } else if (walletTracker == 1) {
+                } else if(walletTracker == 1 && !player1.getBag().contains(wallet)){
+                    System.out.println("You entered western part of Lem!");
+            } 
+                else if (walletTracker == 1) {
                     System.out.println("You entered the western part of Lem! You see a man looking for his wallet. Maybe i should just avoid him");
                 } else if (walletTracker == 0 && player1.getBag().contains(wallet)) {
                     System.out.println("You entered the westen part of Lem! You see a man looking for his wallet. Maybe it's his wallet that i found?");
@@ -386,10 +389,12 @@ public class Game {
                         player1.addCurrency(randoms);
                         player1.removeItem(wallet);
                         player1.getCurrentPlayerRoom().setRoomBehavior(0);
+                        walletTracker = 1;
                     } else if (randoms == 50) {
                         System.out.println("The man jumps of joy and as a reward for finding his wallet he gives you 50 coins.");
                         player1.addCurrency(50);
                         player1.getCurrentPlayerRoom().setRoomBehavior(0);
+                        walletTracker = 1;
                     }
 
                 } else {
