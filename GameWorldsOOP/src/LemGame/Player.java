@@ -2,7 +2,7 @@ package LemGame;
 
 import java.util.*;
 
-public class Player  {
+public class Player {
 
     //instances variables that defines a player.
     private String playerName; //player name
@@ -48,7 +48,6 @@ public class Player  {
     public Room getCurrentPlayerRoom() { //returns the current room
         return currentPlayerRoom;
     }
-
     public void move(Room room) { //move method that updates currentPlayerRoom
         currentPlayerRoom = room;
     }
