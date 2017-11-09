@@ -145,7 +145,7 @@ public class Player {
             playerDrunk++; //increment playerDrunk by 1
             System.out.println("You drunkometer is now at " + this.playerDrunk); // prints how drunk you are
         } else {
-            System.out.println("Your drunkometer is at " + this.playerDrunk + "you are too drunk"); //print if you drank 4 times already
+            System.out.println("Your drunkometer is at " + this.playerDrunk + " you are too drunk"); //print if you drank 4 times already
             System.out.println("You are too drunk");
         }
 

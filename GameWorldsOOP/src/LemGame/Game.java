@@ -34,7 +34,7 @@ public class Game {
     Room fishMarket = new Room("the fish market");
     Prop wallet = new Prop("Wallet", 25);
     Prop beef = new Prop("beef", 25);
-    Prop timePotion = new Prop("magic watch", 25, true);
+    Prop timePotion = new Prop("time potion", 25, true);
     Prop key = new Prop("key", 0);
     Prop ciggarets = new Prop("ciggarets", 25);
     NPC tuborgMan = new NPC("Tuborg Manden", bar);
@@ -51,7 +51,7 @@ public class Game {
         initializeGame();
         while (true) {
             commands();
-            if (beefcount == 4) {
+            if (beefcount >= 4) {
                 System.out.println("The taxi driver takes you home! You won! thanks for playing. Do you want to play agian?");
                 scoreBoard();
                 System.exit(1);
@@ -70,9 +70,9 @@ public class Game {
         System.out.println("The timer has begun! Hurry up");
         player1.setStartTime(System.currentTimeMillis());
         wallet.setPropDescription(" you can either keep the wallet for 25 coins or find the owner for a potential greater reward");
-        beef.setPropDescription(" Give 4 of these to the cab driver to get home");
+        beef.setPropDescription(" Give atleast 4 of these to the cab driver to get home");
         ciggarets.setPropDescription(" someone might be intrested in these");
-        timePotion.setPropDescription(" A magic time potion! Maybe i should try to drink it");
+        timePotion.setPropDescription(" Maybe i should try to drink it");
         key.setPropDescription(". Looks like a key for the fish market");
         player1.setCurrentRoom(centrum);
         centrum.setRoomExit(north);
@@ -104,7 +104,6 @@ public class Game {
         player1.addProp(beef);
         player1.addProp(beef);
         player1.addProp(beef);
-        player1.addProp(timePotion);
 //         TO DO INTIZIALIZE GAME FÆRDIGT
     }
 
@@ -438,7 +437,7 @@ public class Game {
                     }
                 }
 
-                System.out.println("You handed in  " + count + " beefs to the taxi driver");
+                System.out.println("You handed in " + count + " beefs to the taxi driver");
 
             } else {
                 System.out.println("You have no beefs to hand in");
@@ -528,7 +527,7 @@ public class Game {
     private void scoreBoard() {
         endTimeInMinutes = ((System.currentTimeMillis() + drunkPenalty * 1000 - player1.getStartTime()) / 1000 / 60) ;
         endTimeInSeconds = ((System.currentTimeMillis() + drunkPenalty * 1000 - player1.getStartTime()) / 1000) % 60 ;
-        if (beefcount == 4) {
+        if (beefcount >= 4) {
             if (player1.getStartTime() + 1 * 60 * 1000 > System.currentTimeMillis() + drunkPenalty * 1000) {
                 System.out.println("You got 10 points and used " + endTimeInMinutes + " minutes and " + endTimeInSeconds + " seconds");
                 score = 10;
