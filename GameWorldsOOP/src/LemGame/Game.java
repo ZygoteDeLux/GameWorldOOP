@@ -347,7 +347,7 @@ public class Game {
             }
         }
         if (player1.getCurrentPlayerRoom() == bar) {
-            if (bar.getRoomBehavior() == 0) {
+            if (bar.getRoomBehavior() == 1) {
                 System.out.println("Can you do the dishes for us? (Type 'do dishes' to do the dishes in the bar).");
             } else {
                 System.out.println("There is nothing to do right now.");
