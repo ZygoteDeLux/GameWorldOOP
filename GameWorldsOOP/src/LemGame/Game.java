@@ -321,7 +321,7 @@ public class Game {
         }
     }
 
-    private void talk() {
+    public void talk() {
         if (player1.getCurrentPlayerRoom() == south) {
             if (south.getRoomBehavior() == 1) {
                 System.out.println("I could really use a smoke. Do you have any ciggarets my friend? (Type 'hand in' to give the man your ciggarets)");
