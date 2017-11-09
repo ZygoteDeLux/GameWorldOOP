@@ -5,14 +5,35 @@ import java.util.*;
 public class Player {
 
     //instances variables that defines a player.
+    private long startTime;
+    long endTime;
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public long getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(long endTime) {
+        this.endTime = endTime;
+    }
     private String playerName; //player name
     private int playerCurrency; // player currency
     private Room currentPlayerRoom; //players current room
     private int playerDrunk; // indicates how "drunk" the player. It's indicated with a int datatype.
     private ArrayList<Prop> bag = new ArrayList(); // Array list with a list of all tha the props the player has in his bag.
 
-    Player(String playerName) { //Constructor that sets a start value for playername, playerCurrency and playerDrunk
-        this.playerName = playerName; // 
+    Player() { //Constructor that sets a start value for playername, playerCurrency and playerDrunk
         this.playerCurrency = 0;
         this.playerDrunk = 0;
     }
@@ -68,6 +89,8 @@ public class Player {
                     try { //try the following
                         try{ // try the following
                         int next = Integer.parseInt(inputString); // Parse input to integer
+                        if(currentPlayerRoom.roomItems.get(next).isConsumable()){
+                        }
                         bag.add(currentPlayerRoom.roomItems.get(next)); // refer to the index in the arraylist roomItems. 
                         System.out.println("You added a " + currentPlayerRoom.roomItems.get(next).getPropName() + " to your bag" + currentPlayerRoom.roomItems.get(next).getPropDescription());
                         currentPlayerRoom.roomItems.remove(next); //remove item from room.
