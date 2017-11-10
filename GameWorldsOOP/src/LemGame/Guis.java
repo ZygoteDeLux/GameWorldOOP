@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * @author mehgn
  */
 public class Guis extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -33,5 +33,5 @@ public class Guis extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
